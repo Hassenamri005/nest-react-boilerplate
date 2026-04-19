@@ -1,1 +1,5 @@
 .vscode
+.env
+.claude
+node_modules
+dist
