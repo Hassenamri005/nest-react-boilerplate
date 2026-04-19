@@ -30,7 +30,7 @@
     "db:migrate": "prisma migrate dev",
     "db:migrate:status": "prisma migrate status",
     "db:migrate:deploy": "prisma migrate deploy",
-    "swagger:ts": "npx swagger-typescript-api -p ./swagger.json -o ./src/api -n myApi.ts"
+    "swagger:ts": "npx swagger-typescript-api generate -p ./swagger.json -o ./src/api -n myApi.ts"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.6.1",
