@@ -4,15 +4,16 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     restart: always
-    depends_on:
-      - postgres
     ports:
       - '6001:6001'
     env_file:
       - .env
     volumes:
       - .:/app
+    networks:
+      - default
+      - supabase_default
 
-volumes:
-  # Define the named volume for PostgreSQL data persistence
-  postgres_data:   
+networks:
+  supabase_default:
+    external: true
