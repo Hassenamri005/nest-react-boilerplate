@@ -4,7 +4,7 @@
 
 <div align="center">
   <h1> Nest JS React TS Boilerplate 🚀</h1>
-  <p>A full-stack boilerplate integrating <b>Nest JS</b> and <b>React TS</b> with <b>Authentication</b>, <br/><b>Docker</b>, and <b>Docker Compose</b> for seamless development and production environments.</p>
+  <p>A full-stack boilerplate integrating <b>Nest JS</b> and <b>React TS</b> with <b>Authentication</b>, <br/><b>Supabase</b>, <b>Docker</b>, and <b>Docker Compose</b> for seamless development and production environments.</p>
   <img src="https://github.com/user-attachments/assets/2eb031ff-fdb7-42e2-90c6-74d893ed3943" alt="9ZR6vmf"/>
 </div>
 
@@ -29,6 +29,20 @@
   - `Dockerfile.prod`: For an optimized production environment.
 - **Docker Compose**:
   - `docker-compose.yaml`: Simplifies setup for both development and production environments. Choose between `dev` or `prod` profiles.
+
+### Supabase (Self-Hosted)
+
+- **Self-Hosted Supabase**: Full Supabase stack running locally via Docker Compose.
+- **Auth**: Supabase Auth for user management and authentication flows.
+- **Realtime**: Broadcast and listen to database changes in real time.
+- **Storage**: File storage via Supabase Storage (supports S3-compatible backends).
+- **Studio**: Supabase Studio UI for database and project management.
+- **Multiple Compose Profiles**:
+  - `docker-compose.yml`: Default setup.
+  - `docker-compose.nginx.yml`: With Nginx reverse proxy.
+  - `docker-compose.caddy.yml`: With Caddy reverse proxy.
+  - `docker-compose.s3.yml`: With S3-compatible object storage.
+  - `docker-compose.pg17.yml`: With PostgreSQL 17.
 
 ### Backend (Nest JS)
 
@@ -65,6 +79,14 @@ nest-react-boilerplate/
 │   ├── docker-compose.dev.yaml
 │   ├── docker-compose.prod.yaml
 │   └── ...
+├── supabase/              # Self-Hosted Supabase
+│   ├── volumes/           # Persistent data volumes
+│   ├── docker-compose.yml
+│   ├── docker-compose.nginx.yml
+│   ├── docker-compose.caddy.yml
+│   ├── docker-compose.s3.yml
+│   ├── docker-compose.pg17.yml
+│   └── README.md
 └── README.md
 ```
 
@@ -146,6 +168,33 @@ nest-react-boilerplate/
    # Start the Docker containers for development
    docker-compose --profile dev up --build -d
    ```
+
+## Supabase Setup
+
+This project includes a self-hosted Supabase stack in the [`supabase/`](supabase/) directory. It runs alongside the NestJS backend and provides Auth, Realtime, Storage, and Studio out of the box.
+
+### Quick Start
+
+```bash
+cd supabase
+
+# Copy env and configure secrets before first run
+cp .env.example .env
+
+# Start Supabase services
+docker compose up -d
+```
+
+### Access
+
+| Service        | URL                        |
+| -------------- | -------------------------- |
+| Supabase Studio | http://localhost:8000      |
+| REST API (PostgREST) | http://localhost:8000/rest/v1 |
+| Auth           | http://localhost:8000/auth/v1 |
+| Storage        | http://localhost:8000/storage/v1 |
+
+> See [supabase/README.md](supabase/README.md) for full configuration, security hardening, and reverse proxy options.
 
 ## Frontend Routes
 
